@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zentropy.github.io/favicon.ico?v=1581247252897">
+<link rel="shortcut icon" href="https://zentropy.github.io/favicon.ico?v=1581248544115">
 <link rel="stylesheet" href="https://zentropy.github.io/styles/main.css">
 
 
@@ -32,7 +32,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zentropy.github.io">
-        <img src="https://zentropy.github.io/images/avatar.png?v=1581247252897" class="site-logo">
+        <img src="https://zentropy.github.io/images/avatar.png?v=1581248544115" class="site-logo">
         <h1 class="site-title">zentropy&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -129,7 +129,7 @@
 <p>​       在一个很大的图中找到两个点的最短路径，比如说Facebook的朋友关系图（友谊图）。</p>
 <figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/zentropy/picturebed/master/img/20130906105815703.gif" alt="" loading="lazy"></figure>
 <p>​       宽度优先搜索算法是这个问题的标准方法。假设这两个节点之间之间的距离是k，并且网络中点的平均度数是p，那么BFS算法需要扩展O(p<sup>k</sup>)个节点。</p>
-<p>​       一个更好的方案是同时从两个节点开始搜索，并且看什么时候这两个搜索的边界相遇。这个可以将需要扩展的节点降低到O(p<sup>(k/2)</sup>)。这个方案在寻路问题表现很好，包括明确的图以及游戏中遇到的不明确的图。</p>
+<p>​       一个更好的方案是同时从两个节点开始搜索，并且看什么时候这两个搜索的边界相遇。这个可以将需要扩展的节点降低到O(p<sup>k/2</sup>)。这个方案在寻路问题表现很好，包括明确的图以及游戏中遇到的不明确的图。</p>
 <p><strong>破解2DES加密</strong></p>
 <p>​       DES是一种使用56bit密钥的加密标准。今天计算机可以使用暴力搜索的方法来破解加密。一种简单的使得加密算法更安全的方法是应用两次加密，使用两个不同的密钥。这种方法容易受到Diffile-Hellman发明的中间者攻击。3DES工作的原理是通过用2个密钥对明文进行3次加密。</p>
 <p>​       我们来看看为什么2DES是容易受到攻击的。假设Ek是密钥为k的加密函数，Dk是密钥为k的解密函数。2DES算法使用两个密钥k和K，Ek(EK(p)) = s是一个加密过程，并且DK(Dk(s)) = p是一个解密。</p>
@@ -144,7 +144,7 @@
 <p>​       朴素的算法是遍历所有可能的k的值，复杂度为O(n)。</p>
 <p>​       baby-step, giant-step算法使用了MITM，更高效地解决了这个问题。</p>
 <p>​       记k = i[sqrt(n)] + j，i &lt;= sqrt(n)且j &lt;= sqrt(n)。替换等式中的k，我们有<br>
-p^(i*[sqrt(n)] + j)^ = q(mod n)，然后两边同除以p<sup>j</sup>有：p<sup>(i*sqrt(n))</sup> = q*p<sup>(-j)</sup>(mod n)</p>
+p^(i*[sqrt(n)] + j)^ = q(mod n)，然后两边同除以p<sup>j</sup>有：p<sup>(i*sqrt(n))</sup> = q*p<sup>-j</sup>(mod n)</p>
 <p>​       在这个时候，我们可以暴力搜索等式两边并且找到一个碰撞。</p>
 <p>​       这个算法需要O(sqrt(n))的空间和O(sqrt(n))的时间</p>
 <p><strong>警告</strong></p>
