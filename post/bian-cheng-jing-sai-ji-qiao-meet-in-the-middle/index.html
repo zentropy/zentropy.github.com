@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" >
 
-<title>编程竞赛技巧:Meet in the middle | zentropy&#39;s blog</title>
+<title>[译]编程竞赛技巧:Meet in the middle | zentropy&#39;s blog</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://zentropy.github.io/favicon.ico?v=1581246302389">
+<link rel="shortcut icon" href="https://zentropy.github.io/favicon.ico?v=1581247252897">
 <link rel="stylesheet" href="https://zentropy.github.io/styles/main.css">
 
 
@@ -23,7 +23,7 @@
 本文于2013年翻译自http://www.infoarena.ro/blog/meet-in-the-middle，水平有限，欢迎指正。
 
 ​        Meet in the middle(有时候也叫作split and ..." />
-    <meta name="keywords" content="算法" />
+    <meta name="keywords" content="译文,算法" />
   </head>
   <body>
     <div id="app" class="main">
@@ -32,7 +32,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://zentropy.github.io">
-        <img src="https://zentropy.github.io/images/avatar.png?v=1581246302389" class="site-logo">
+        <img src="https://zentropy.github.io/images/avatar.png?v=1581247252897" class="site-logo">
         <h1 class="site-title">zentropy&#39;s blog</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,7 +94,7 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">编程竞赛技巧:Meet in the middle</h2>
+            <h2 class="post-title">[译]编程竞赛技巧:Meet in the middle</h2>
             <div class="post-date">2020-02-09</div>
             
             <div class="post-content" v-pre>
@@ -106,9 +106,9 @@
 <p>​       在我们继续之前，我必须要指出，附加问题是这篇文章中最好的部分。现在，我们来看这个技巧的一些应用。</p>
 <p><strong>4和问题（流行的面试问题）</strong></p>
 <p>​       给定一个整数数组A，问数组中是否存在4个数，使得这4个数的和是0（同一个元素可以被多次使用）。例如：数组A = [2, 3, 1, 0, -4, -1]，一种可能的方案是3 + 1 + 0 - 4 = 0 或 0 + 0 + 0 + 0 = 0。</p>
-<p>​       朴素的算法是判断所有可能的4个数的组合，这种方案需要计算O(N^4)次。</p>
-<p>​       一个些微改进的算法是暴力搜索所有的可能的n<sup>3个3个数的组合，并且用hash表来判断-(a+b+c)是否在原始的数组中。这个算法的复杂度是O(n</sup>3)</p>
-<p>​       到目前为止,你可能想知道meet in the middle在这里要怎么应用，最关键的洞察来自于改写a + b + c + d = 0 成 a + b = -(c + d)。现在我们可以存储n<sup>2个a+b的和在一个hash表S中，然后可以枚举所有可能c和d的n</sup>2种组合并且判断S中是否包括-(c+d)。</p>
+<p>​       朴素的算法是判断所有可能的4个数的组合，这种方案需要计算O(N<sup>4</sup>)次。</p>
+<p>​       一个些微改进的算法是暴力搜索所有的可能的n<sup>3</sup>个3个数的组合，并且用hash表来判断-(a+b+c)是否在原始的数组中。这个算法的复杂度是O(n<sup>3</sup>)</p>
+<p>​       到目前为止,你可能想知道meet in the middle在这里要怎么应用，最关键的洞察来自于改写a + b + c + d = 0 成 a + b = -(c + d)。现在我们可以存储n<sup>2</sup>个a+b的和在一个hash表S中，然后可以枚举所有可能c和d的n<sup>2</sup>种组合并且判断S中是否包括-(c+d)。</p>
 <p>​       代码看起来这样：</p>
 <pre><code>def 4sum(A):
   sums = {}
@@ -124,26 +124,27 @@
 
   print &quot;No solution.&quot; 
 </code></pre>
-<p>​       这个算法的时间复杂度和空间复杂度都是O(n^2)，这个问题没有已知的更快的算法。</p>
+<p>​       这个算法的时间复杂度和空间复杂度都是O(n<sup>2</sup>)，这个问题没有已知的更快的算法。</p>
 <p><strong>双向搜索</strong></p>
 <p>​       在一个很大的图中找到两个点的最短路径，比如说Facebook的朋友关系图（友谊图）。</p>
 <figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/zentropy/picturebed/master/img/20130906105815703.gif" alt="" loading="lazy"></figure>
-<p>​       宽度优先搜索算法是这个问题的标准方法。假设这两个节点之间之间的距离是k，并且网络中点的平均度数是p，那么BFS算法需要扩展O(p^k)个节点。</p>
-<p>​       一个更好的方案是同时从两个节点开始搜索，并且看什么时候这两个搜索的边界相遇。这个可以将需要扩展的节点降低到O(p^(k/2))。这个方案在寻路问题表现很好，包括明确的图以及游戏中遇到的不明确的图。</p>
+<p>​       宽度优先搜索算法是这个问题的标准方法。假设这两个节点之间之间的距离是k，并且网络中点的平均度数是p，那么BFS算法需要扩展O(p<sup>k</sup>)个节点。</p>
+<p>​       一个更好的方案是同时从两个节点开始搜索，并且看什么时候这两个搜索的边界相遇。这个可以将需要扩展的节点降低到O(p<sup>(k/2)</sup>)。这个方案在寻路问题表现很好，包括明确的图以及游戏中遇到的不明确的图。</p>
 <p><strong>破解2DES加密</strong></p>
 <p>​       DES是一种使用56bit密钥的加密标准。今天计算机可以使用暴力搜索的方法来破解加密。一种简单的使得加密算法更安全的方法是应用两次加密，使用两个不同的密钥。这种方法容易受到Diffile-Hellman发明的中间者攻击。3DES工作的原理是通过用2个密钥对明文进行3次加密。</p>
 <p>​       我们来看看为什么2DES是容易受到攻击的。假设Ek是密钥为k的加密函数，Dk是密钥为k的解密函数。2DES算法使用两个密钥k和K，Ek(EK(p)) = s是一个加密过程，并且DK(Dk(s)) = p是一个解密。</p>
 <p>​       Diffie-Hellman的中间相遇攻击用空间换取时间来找到这两个密钥。对于p，尝试所有可能的密钥可以取得对应的多个Ek(p)的集合。同样地，对于s可以用所有可能的密钥来解密，取得所有可能Dk(s)的集合。如果我们能够在这两个集合中找到匹配的一对，也就是说Eki(p) = Dkj(s)，那么密钥就是ki和kj。</p>
 <figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/zentropy/picturebed/master/img/20130906131126937.png" alt="" loading="lazy"></figure>
 <p>​</p>
-<p>​       朴素的暴力算法需要2<sup>56**2</sup>56次迭代来遍历所有可能的k1和k2的值，而这个算法使用2<sup>56**56的空间来存储所有的Eki(p)，并且2</sup>56个操作来找到匹配。</p>
+<p>​       朴素的暴力算法需要2<sup>56</sup>*2<sup>56</sup>次迭代来遍历所有可能的k1和k2的值，而这个算法使用2<sup>56</sup>*56的空间来存储所有的Eki(p)，并且2<sup>56</sup>个操作来找到匹配。</p>
 <p>​       这个是相当多的空间和相当多的计算时间。但对于一个足够大的公司或者国家，它就变得非常可能的范畴。</p>
 <p>​       2001的国际奥赛的问题DOUBLE要求破解24密钥长度的2DES就是非常可行的。</p>
 <p><strong>离散对数算法</strong></p>
-<p>​       给定一个素数n和p,q两个数，0 &lt;= p,q &lt;= n-1，找到k使得p^k = q(mod n)。</p>
+<p>​       给定一个素数n和p,q两个数，0 &lt;= p,q &lt;= n-1，找到k使得p<sup>k</sup> = q(mod n)。</p>
 <p>​       朴素的算法是遍历所有可能的k的值，复杂度为O(n)。</p>
 <p>​       baby-step, giant-step算法使用了MITM，更高效地解决了这个问题。</p>
-<p>​       记k = i[sqrt(n)] + j，i &lt;= sqrt(n)且j &lt;= sqrt(n)。替换等式中的k，我们有p^(i**[sqrt(n)] + j) = q(mod n)，然后两边同除以p<sup>j有：p</sup>(i**sqrt(n)) = q*p^(-j) (mod n)</p>
+<p>​       记k = i[sqrt(n)] + j，i &lt;= sqrt(n)且j &lt;= sqrt(n)。替换等式中的k，我们有<br>
+p^(i*[sqrt(n)] + j)^ = q(mod n)，然后两边同除以p<sup>j</sup>有：p<sup>(i*sqrt(n))</sup> = q*p<sup>(-j)</sup>(mod n)</p>
 <p>​       在这个时候，我们可以暴力搜索等式两边并且找到一个碰撞。</p>
 <p>​       这个算法需要O(sqrt(n))的空间和O(sqrt(n))的时间</p>
 <p><strong>警告</strong></p>
@@ -154,21 +155,25 @@
 <p><strong>2.6度空间(6度间隔/6度分割)</strong></p>
 <p>​       给定社交网络中的两个名字，设计一个有效的方法，判断这两个人是否最多相隔6个朋友</p>
 <p><strong>3.等分</strong></p>
-<p>​       给定一个40个实数的集合A,判断是否有方法将集合A分成两个子集,使得两个子集的元素和相同。（提示：复杂度O(2^(n/2))</p>
+<p>​       给定一个40个实数的集合A,判断是否有方法将集合A分成两个子集,使得两个子集的元素和相同。（提示：复杂度O(2<sup>n/2</sup>)</p>
 <p><strong>4.最小点覆盖</strong></p>
-<p>​       给定一个有n(n &lt;= 30)个节点的图，找到一个最小的点集，使得图中的每一条边至少有一个顶点在这个点集中。（提示：复杂度O(3^(n/2)）</p>
+<p>​       给定一个有n(n &lt;= 30)个节点的图，找到一个最小的点集，使得图中的每一条边至少有一个顶点在这个点集中。（提示：复杂度O(3<sup>n/2</sup>）</p>
 <p><strong>5.正方形栅栏</strong></p>
-<p>​       给定一个数组L，代表n个木板的长度。请回答是否存在一种方法，使用所有的木板构成一个正方形栅栏且不损坏也不重叠。（提示：复杂度O(4^n/2)）</p>
+<p>​       给定一个数组L，代表n个木板的长度。请回答是否存在一种方法，使用所有的木板构成一个正方形栅栏且不损坏也不重叠。（提示：复杂度O(4<sup>n/2</sup>)）</p>
 <p><strong>6.8拼图</strong></p>
 <p>​       8拼图是在一个有8个板子和1个空位置的3*3拼板上滑动的游戏，在每一步你只能移动一个与空的位置正交相邻的板子到空的位置上。游戏开始时板子和空位置随机配置，目标是用最少的移动将拼版移动成指定的配置。找到一个有效的算法来解决（提示：每一个位置最多31次移动可解决）。下图我们让可以看到解决8拼图的一系列的移动。</p>
 <figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/zentropy/picturebed/master/img/20130906131759000.png" alt="" loading="lazy"></figure>
 <p><strong>7.4-反转问题</strong></p>
-<p>​       给定两个相同长度的字符串S和T。请指出是否能够从S得到T，使用4种子串翻转操作。（提示：复杂度O(n^5)）</p>
+<p>​       给定两个相同长度的字符串S和T。请指出是否能够从S得到T，使用4种子串翻转操作。（提示：复杂度O(n<sup>5</sup>)）</p>
 <p>​       试着解决这些问题，在评论中。</p>
 
             </div>
             
               <div class="tag-container">
+                
+                  <a href="https://zentropy.github.io/tag/9latrCpPi" class="tag">
+                    译文
+                  </a>
                 
                   <a href="https://zentropy.github.io/tag/ZF38zqi4u" class="tag">
                     算法
